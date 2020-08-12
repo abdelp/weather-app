@@ -7,7 +7,7 @@ const fetchUrl = async (url) => {
     response = await error;
   }
 
-  return response;
+  return response.json();
 };
 
 export default fetchUrl;
