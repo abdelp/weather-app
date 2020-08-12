@@ -21,5 +21,8 @@
   "devDependencies": {
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "await-to-js": "^2.1.1"
   }
 }
