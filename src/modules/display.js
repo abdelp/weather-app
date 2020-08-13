@@ -18,4 +18,41 @@ const updateDesc = (desc) => {
   descEl.innerText = desc;
 };
 
-export {getVal, updateTemp, updateMinMax, updateDesc};
+const updateCity = (name) => {
+  const cityEl = document.getElementById("city-name");
+  cityEl.innerText = name;
+};
+
+const updateBackground = (imgUrl) => {
+  const backgroundEl = document.getElementById('background');
+  backgroundEl.style.background = `url(${imgUrl}) left top / cover no-repeat`;
+  console.log(backgroundEl);
+};
+
+const cleanForm = (formId) => {
+  const formEl = document.getElementById(formId);
+  formEl.reset();
+};
+
+const updateView = (data, backgroundImg) => {
+  const {
+    temp,
+    temp_min,
+    temp_max,
+    description,
+    cityName
+  } = data;
+  updateTemp(temp);
+  updateMinMax({
+    temp_min,
+    temp_max
+  });
+  updateDesc(description);
+  updateCity(cityName);
+  updateBackground(backgroundImg);
+};
+
+export {
+  getVal,
+  updateView
+};
