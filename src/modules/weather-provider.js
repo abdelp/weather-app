@@ -17,7 +17,6 @@ const formatWeatherData = (data) => {
 
 const getForecast = async (cityName, units) => {
   const {api, url} = weatherConf();
-
   const parametrizedUrl = `${url}?q=${cityName}&appid=${api}&units=${units}`;
   let error, result;
 
@@ -27,6 +26,18 @@ const getForecast = async (cityName, units) => {
   return formatWeatherData(result);
 };
 
+const getForecastByCoordinates = async (position, units) => {
+  const {api, url} = weatherConf();
+  const parametrizedUrl = `${url}?lat=${position.lat}&lon=${position.lon}&appid=${api}&units=${units}`;
+  let error, result;
+
+  [error, result] = await to(fetchUrl(parametrizedUrl));
+  if (error) return error;
+
+  return formatWeatherData(result);
+}
+
 export {
-  getForecast
+  getForecast,
+  getForecastByCoordinates
 };
