@@ -34,21 +34,35 @@ const cleanForm = (formId) => {
   formEl.reset();
 };
 
+const updateIcon = (iconUrl) => {
+  let iconEl = document.getElementById('weather-icon');
+  iconEl.src = iconUrl;
+};
+
+const updateLastUpdate = (date) => {
+  let lastUpdEl = document.querySelector('#last-update span');
+  lastUpdEl.innerText = date;
+};
+
 const updateView = (data, backgroundImg) => {
   const {
     temp,
     temp_min,
     temp_max,
+    icon,
     description,
-    cityName
+    cityName,
+    lastUpdate
   } = data;
   updateTemp(temp);
   updateMinMax({
     temp_min,
     temp_max
   });
+  updateIcon(icon);
   updateDesc(description);
   updateCity(cityName);
+  updateLastUpdate(lastUpdate);
   updateBackground(backgroundImg);
 };
 
