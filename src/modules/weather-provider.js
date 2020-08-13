@@ -3,6 +3,7 @@ import to from 'await-to-js';
 import {weatherConf} from './params-provider';
 
 const formatWeatherData = (data) => {
+  const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
   return {
     cityName: data.name,
     description: data.weather[0].description,
@@ -11,7 +12,8 @@ const formatWeatherData = (data) => {
     temp_max: data.main.temp_max,
     pressure: data.main.pressure,
     humidity: data.main.humidity,
-    wind: data.wind
+    wind: data.wind,
+    icon: iconUrl
   }
 };
 
