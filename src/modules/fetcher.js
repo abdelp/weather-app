@@ -1,13 +1,19 @@
+import timeoutPromise from './promises.js';
+import to from 'await-to-js';
+
 const fetchUrl = async (url) => {
-  let response;
+  let error, result;
 
-  try {
-    response = await fetch(url, {mode: 'cors'});
-  } catch(error) {
-    response = await error;
-  }
+  [error, result] = await to(Promise.race([
+    fetch(url, {
+      mode: 'cors'
+    }),
+    timeoutPromise(3000)
+  ]));
 
-  return response.json();
+  if (error) return error;
+
+  return result.json();
 };
 
 export default fetchUrl;
