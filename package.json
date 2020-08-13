@@ -25,6 +25,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "await-to-js": "^2.1.1"
+    "await-to-js": "^2.1.1",
+    "pubsub-js": "^1.8.0"
   }
 }
