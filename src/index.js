@@ -1,24 +1,17 @@
-import fetchUrl from './modules/fetcher.js';
-import timeoutPromise from './modules/promises.js';
 import to from 'await-to-js';
 import * as Display from './modules/display.js';
+import './assets/stylesheets/style.css';
+import * as Weather from './modules/weather-provider.js';
+import * as Img from './modules/img-provider.js';
 
 window.searchForecast = async () => {
-  const api = 'YOUR_API_KEY';
-  const cityName = 'Asuncion';
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${api}&units=metric`;
+  const cityName = Display.getVal('city');
+  let error, weatherData;
 
-  let error, result;
+  [error, weatherData] = await to(Weather.getForecast(cityName, 'metric'));
 
-  [error, result] = await to(Promise.race([
-      fetchUrl(url),
-      timeoutPromise(3000)
-    ]));
-  console.log(result.main);
+  let imgUrl;
+  [error, imgUrl] = await to(Img.getImgUrl(weatherData.description));
 
-  Display.updateTemp(result.main.temp);
-  Display.updateMinMax({temp_min: result.main.temp_min, temp_max: result.main.temp_max});
-  Display.updateDesc(result.weather[0].description);
-
-  return result;
+  Display.updateView(weatherData, imgUrl);
 };
