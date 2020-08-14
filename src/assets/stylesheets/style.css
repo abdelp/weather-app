@@ -7,7 +7,6 @@ body, #background {
 #background {
   position: absolute;
   top: 0;
-  /* max-height: 100%; */
   z-index: -1;
   background:rgb(39,83,133);
   background-size: cover;
@@ -24,10 +23,6 @@ body, #background {
   color: white;
 }
 
-.sections-container * {
-  z-index: -1;
-}
-
 .sections-background {
   position: absolute;
   top: 0;
@@ -37,6 +32,11 @@ body, #background {
   height: 100%;
   width: 100%;
   border-radius: 4px;
+  z-index: -1;
+}
+
+.input-group-append {
+  margin-right: 10px;
 }
 
 .button svg {
@@ -50,4 +50,17 @@ body, #background {
 .main-data {
   margin: 0 auto;
   display: inline-block;
+}
+
+h4 {
+  border-top: 1px solid rgba(255, 255, 255, .3);
+}
+
+.humidity-title {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.humidity-radial {
+  width: 300px;
 }
