@@ -26,7 +26,6 @@ const updateCity = (name) => {
 const updateBackground = (imgUrl) => {
   const backgroundEl = document.getElementById('background');
   backgroundEl.style.background = `url(${imgUrl}) left top / cover no-repeat`;
-  console.log(backgroundEl);
 };
 
 const cleanForm = (formId) => {
@@ -49,10 +48,7 @@ const updateRadialProgressBar = (percentage) => {
   let progressBar = document.querySelector('#progress-bar path');
   progressBar.setAttribute('stroke-dasharray', `${value},250.2`);
   let percentageText = document.querySelector('#progress-bar text');
-  console.log(percentageText);
-  console.log(percentage);
   percentageText.textContent = `${percentage}%`;
-  console.log(percentageText.innerText);
 };
 
 const updatePressure = (pressure) => {
