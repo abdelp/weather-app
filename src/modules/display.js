@@ -13,12 +13,13 @@ const getUnits = () => {
 
 const updateTemp = (temp) => {
   const tempEl = document.getElementById("main-temp");
+  temp = parseInt(temp);
   tempEl.innerText = `${temp}°`;
 };
 
 const updateMinMax = (temp) => {
   const minMax = document.getElementById("min-max");
-  minMax.innerText = `${temp.temp_min}°/${temp.temp_max}°`;
+  minMax.innerText = `${parseInt(temp.temp_min)}°/${parseInt(temp.temp_max)}°`;
 };
 
 const updateDesc = (desc) => {
@@ -26,9 +27,9 @@ const updateDesc = (desc) => {
   descEl.innerText = desc;
 };
 
-const updateCity = (name) => {
+const updateCity = (name, country) => {
   const cityEl = document.getElementById("city-name");
-  cityEl.innerText = name;
+  cityEl.innerText = `${name}, ${country}`;
 };
 
 const updateBackground = (imgUrl) => {
@@ -95,6 +96,7 @@ const updateView = (data, backgroundImg) => {
     icon,
     description,
     cityName,
+    country,
     humidity,
     lastUpdate,
     pressure,
@@ -107,7 +109,7 @@ const updateView = (data, backgroundImg) => {
   });
   updateIcon(icon);
   updateDesc(description);
-  updateCity(cityName);
+  updateCity(cityName, country);
   updateLastUpdate(lastUpdate);
   updateBackground(backgroundImg);
   updateRadialProgressBar(humidity);
@@ -115,11 +117,25 @@ const updateView = (data, backgroundImg) => {
   updateWind(wind);
 };
 
+const disableSubmit = () => {
+  let element = document.getElementById('city');
+  element.addEventListener('keypress', event => {
+      if (event.keyCode == 13) {
+          event.preventDefault();
+          if (element.value) {
+            PubSub.publish('enter pressed');
+          }
+      }
+  });
+}
+
 export {
   getVal,
   updateView,
   getUnits,
   setUnitChangeHandler,
   updateTemp,
-  updateMinMax
+  updateMinMax,
+  cleanForm,
+  disableSubmit
 };
