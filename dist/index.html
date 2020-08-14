@@ -30,7 +30,14 @@
                 </svg>
               </button>
             </div>
+            <label class="switch">
+              <input type="checkbox" checked value="Celcius">
+              <span class="slider round"></span>
+              <div class="on-label label">°C</div>
+              <div class="off-label label">°F</div>
+            </label>
           </div>
+
         </form>
       </section>
       <section id="main-data-section">
@@ -52,13 +59,21 @@
         </div>
       </section>
       <section>
-        <h2>Extended Forecast</h2>
+        <h4>Extended Forecast</h4>
         <div class="row">
           <div class="col">
-            circulo
+            <p class="humidity-title">Humudity</p>
+            <svg id="progress-bar" viewbox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="rgba(0,0,0,0.2)" />
+              <path fill="none" stroke-linecap="round" stroke-width="5" stroke="#fff" stroke-dasharray="1,250.2" d="M50 10
+                       a 40 40 0 0 1 0 80
+                       a 40 40 0 0 1 0 -80" />
+              <text x="50" fill="#FFF" y="50" text-anchor="middle" dy="7" font-size="20">1%</text>
+            </svg>
           </div>
           <div class="col">
-            ST
+            <p id="pressure"><strong>Pressure: </strong><span>0</span> hPa</p>
+            <p id="wind"><strong>Wind: </strong><span>0</span> mts/s</p>
           </div>
         </div>
       </section>
