@@ -44,6 +44,27 @@ const updateLastUpdate = (date) => {
   lastUpdEl.innerText = date;
 };
 
+const updateRadialProgressBar = (percentage) => {
+  const value = percentage * 250 / 100;
+  let progressBar = document.querySelector('#progress-bar path');
+  progressBar.setAttribute('stroke-dasharray', `${value},250.2`);
+  let percentageText = document.querySelector('#progress-bar text');
+  console.log(percentageText);
+  console.log(percentage);
+  percentageText.textContent = `${percentage}%`;
+  console.log(percentageText.innerText);
+};
+
+const updatePressure = (pressure) => {
+  let pressureEl = document.querySelector('#pressure span');
+  pressureEl.innerText = pressure;
+};
+
+const updateWind = (wind) => {
+  let windEl = document.querySelector('#wind span');
+  windEl.innerText = wind;
+};
+
 const updateView = (data, backgroundImg) => {
   const {
     temp,
@@ -52,7 +73,10 @@ const updateView = (data, backgroundImg) => {
     icon,
     description,
     cityName,
-    lastUpdate
+    humidity,
+    lastUpdate,
+    pressure,
+    wind
   } = data;
   updateTemp(temp);
   updateMinMax({
@@ -64,6 +88,9 @@ const updateView = (data, backgroundImg) => {
   updateCity(cityName);
   updateLastUpdate(lastUpdate);
   updateBackground(backgroundImg);
+  updateRadialProgressBar(humidity);
+  updatePressure(pressure);
+  updateWind(wind);
 };
 
 export {
