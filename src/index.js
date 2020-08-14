@@ -19,6 +19,7 @@ window.searchForecast = async () => {
   [error, imgUrl] = await to(Img.getImgUrl(weatherData.description));
 
   Display.updateView(weatherData, imgUrl);
+  Display.cleanForm('search-form');
 };
 
 const searchByCoordinates = async (event, position) => {
@@ -43,9 +44,11 @@ const updateView = async (event, unit) => {
 
 PubSub.subscribe('location retrieved', searchByCoordinates);
 PubSub.subscribe('unit changed', updateView);
+PubSub.subscribe('enter pressed', searchForecast);
 
 Location.getLocation();
 
 window.onload = () => {
   Display.setUnitChangeHandler();
+  Display.disableSubmit('search-form');
 }
