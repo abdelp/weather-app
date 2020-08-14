@@ -5,6 +5,7 @@ import getCurrentDateTime from './datetime';
 
 let data = {
   cityName: '',
+  country: '',
   main: '',
   description: '',
   units: 'metric',
@@ -31,6 +32,7 @@ const formatWeatherData = (data) => {
     wind: data.wind.speed,
     icon: iconUrl,
     units: data.units,
+    country: data.sys.country,
     lastUpdate: data.lastUpdate
   }
 };
