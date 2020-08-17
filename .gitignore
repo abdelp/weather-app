@@ -1,0 +1,5 @@
+node_modules
+dist/main.js
+src/modules/keyProvider.js
+.firebase
+.firebaserc
