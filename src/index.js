@@ -14,12 +14,16 @@ window.searchForecast = async () => {
   let error, weatherData;
 
   [error, weatherData] = await to(Weather.updateData(cityName, units));
+  if(weatherData) {
 
-  let imgUrl;
-  [error, imgUrl] = await to(Img.getImgUrl(weatherData.description));
+    let imgUrl;
+    [error, imgUrl] = await to(Img.getImgUrl(weatherData.main));
 
-  Display.updateView(weatherData, imgUrl);
-  Display.cleanForm('search-form');
+    Display.updateView(weatherData, imgUrl);
+    Display.cleanForm('search-form');
+  } else {
+    Display.showModal('not-found-modal');
+  }
 };
 
 const searchByCoordinates = async (event, position) => {
@@ -27,6 +31,7 @@ const searchByCoordinates = async (event, position) => {
   let error, weatherData;
   [error, weatherData] = await to(Weather.updateDataByCoordinates({lon: position.coords.longitude, lat: position.coords.latitude}, 'metric'));
 
+  // if(weatherData)
   let imgUrl;
   [error, imgUrl] = await to(Img.getImgUrl(weatherData.main));
 
