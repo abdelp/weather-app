@@ -19,10 +19,11 @@ let data = {
   lastUpdate: ''};
 
 const formatWeatherData = (data) => {
-  const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+  const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
   return {
     cityName: data.name,
-    main: `weather ${data.weather[0].main} landscape`,
+    main: `landscape ${data.weather[0].description}`,
     description: data.weather[0].description,
     temp: parseInt(data.main.temp),
     temp_min: parseInt(data.main.temp_min),
