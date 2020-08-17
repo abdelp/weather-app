@@ -1,17 +1,7 @@
-body,
-#background {
+body {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-}
-
-#background {
-  position: absolute;
-  top: 0;
-  z-index: -1;
-  background: linear-gradient(360deg, rgba(39, 83, 133, 1) 12%, rgba(55, 120, 194, 1) 65%);
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .sections-container {

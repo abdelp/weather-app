@@ -33,7 +33,7 @@ const updateCity = (name, country) => {
 };
 
 const updateBackground = (imgUrl) => {
-  const backgroundEl = document.getElementById('background');
+  const backgroundEl = document.body;
   backgroundEl.style.background = `url(${imgUrl}) left top / cover no-repeat`;
 };
 
