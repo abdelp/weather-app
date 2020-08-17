@@ -5,8 +5,8 @@ const getLocation = () => {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(notifyLocation);
-  } else { 
-    result = Error("Geolocation is not supported by this browser.");
+  } else {
+    result = Error('Geolocation is not supported by this browser.');
   }
 
   return result;
@@ -16,4 +16,4 @@ const notifyLocation = (position) => {
   PubSub.publish('location retrieved', position);
 };
 
-export {getLocation};
+export { getLocation };

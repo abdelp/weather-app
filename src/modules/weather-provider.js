@@ -1,6 +1,6 @@
-import fetchUrl from './fetcher.js';
 import to from 'await-to-js';
-import {weatherConf} from './params-provider';
+import fetchUrl from './fetcher.js';
+import { weatherConf } from './params-provider';
 import getCurrentDateTime from './datetime';
 
 let data = {
@@ -16,7 +16,8 @@ let data = {
   humidity: 0,
   wind: 0,
   icon: '',
-  lastUpdate: ''};
+  lastUpdate: '',
+};
 
 const formatWeatherData = (data) => {
   const iconUrl = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
@@ -34,14 +35,15 @@ const formatWeatherData = (data) => {
     icon: iconUrl,
     units: data.units,
     country: data.sys.country,
-    lastUpdate: data.lastUpdate
-  }
+    lastUpdate: data.lastUpdate,
+  };
 };
 
 const updateData = async (cityName, units) => {
-  const {api, url} = weatherConf();
+  const { api, url } = weatherConf();
   const parametrizedUrl = `${url}?q=${cityName}&appid=${api}&units=${units}`;
-  let error, result;
+  let error; let
+    result;
 
   [error, result] = await to(fetchUrl(parametrizedUrl));
   if (error) return error;
@@ -55,9 +57,10 @@ const updateData = async (cityName, units) => {
 };
 
 const updateDataByCoordinates = async (position, units) => {
-  const {api, url} = weatherConf();
+  const { api, url } = weatherConf();
   const parametrizedUrl = `${url}?lat=${position.lat}&lon=${position.lon}&appid=${api}&units=${units}`;
-  let error, result;
+  let error; let
+    result;
 
   [error, result] = await to(fetchUrl(parametrizedUrl));
   if (error) return error;
@@ -68,20 +71,20 @@ const updateDataByCoordinates = async (position, units) => {
   data = formatWeatherData(result);
 
   return data;
-}
-
-const getData = () => {
-  return data;
 };
 
-const updateUnit = (newUnit) => {
-  const {units, temp, temp_min, temp_max} = getData();
+const getData = () => data;
 
-  if(newUnit === 'metric' && units != 'metric') {
-    data.temp =  (temp - 32) / 1.8;
+const updateUnit = (newUnit) => {
+  const {
+    units, temp, temp_min, temp_max,
+  } = getData();
+
+  if (newUnit === 'metric' && units != 'metric') {
+    data.temp = (temp - 32) / 1.8;
     data.temp_min = (temp_min - 32) / 1.8;
     data.temp_max = (temp_max - 32) / 1.8;
-  } else if(newUnit === 'imperial' && units != 'imperial') {
+  } else if (newUnit === 'imperial' && units != 'imperial') {
     data.temp = temp * 1.8 + 32;
     data.temp_min = temp_min * 1.8 + 32;
     data.temp_max = temp_max * 1.8 + 32;
@@ -93,5 +96,5 @@ export {
   updateData,
   updateDataByCoordinates,
   getData,
-  updateUnit
+  updateUnit,
 };

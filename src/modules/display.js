@@ -12,23 +12,23 @@ const getUnits = () => {
 };
 
 const updateTemp = (temp) => {
-  const tempEl = document.getElementById("main-temp");
+  const tempEl = document.getElementById('main-temp');
   temp = parseInt(temp);
   tempEl.innerText = `${temp}°`;
 };
 
 const updateMinMax = (temp) => {
-  const minMax = document.getElementById("min-max");
+  const minMax = document.getElementById('min-max');
   minMax.innerText = `${parseInt(temp.temp_min)}°/${parseInt(temp.temp_max)}°`;
 };
 
 const updateDesc = (desc) => {
-  const descEl = document.getElementById("desc");
+  const descEl = document.getElementById('desc');
   descEl.innerText = desc;
 };
 
 const updateCity = (name, country) => {
-  const cityEl = document.getElementById("city-name");
+  const cityEl = document.getElementById('city-name');
   cityEl.innerText = `${name}, ${country}`;
 };
 
@@ -43,30 +43,30 @@ const cleanForm = (formId) => {
 };
 
 const updateIcon = (iconUrl) => {
-  let iconEl = document.getElementById('weather-icon');
+  const iconEl = document.getElementById('weather-icon');
   iconEl.src = iconUrl;
 };
 
 const updateLastUpdate = (date) => {
-  let lastUpdEl = document.querySelector('#last-update span');
+  const lastUpdEl = document.querySelector('#last-update span');
   lastUpdEl.innerText = date;
 };
 
 const updateRadialProgressBar = (percentage) => {
   const value = percentage * 250 / 100;
-  let progressBar = document.querySelector('#progress-bar path');
+  const progressBar = document.querySelector('#progress-bar path');
   progressBar.setAttribute('stroke-dasharray', `${value},250.2`);
-  let percentageText = document.querySelector('#progress-bar text');
+  const percentageText = document.querySelector('#progress-bar text');
   percentageText.textContent = `${percentage}%`;
 };
 
 const updatePressure = (pressure) => {
-  let pressureEl = document.querySelector('#pressure span');
+  const pressureEl = document.querySelector('#pressure span');
   pressureEl.innerText = pressure;
 };
 
 const updateWind = (wind) => {
-  let windEl = document.querySelector('#wind span');
+  const windEl = document.querySelector('#wind span');
   windEl.innerText = wind;
 };
 
@@ -100,12 +100,12 @@ const updateView = (data, backgroundImg) => {
     humidity,
     lastUpdate,
     pressure,
-    wind
+    wind,
   } = data;
   updateTemp(temp);
   updateMinMax({
     temp_min,
-    temp_max
+    temp_max,
   });
   updateIcon(icon);
   updateDesc(description);
@@ -118,14 +118,14 @@ const updateView = (data, backgroundImg) => {
 };
 
 const disableSubmit = () => {
-  let element = document.getElementById('city');
+  const element = document.getElementById('city');
   element.addEventListener('keypress', event => {
-      if (event.keyCode == 13) {
-          event.preventDefault();
-          if (element.value) {
-            PubSub.publish('enter pressed');
-          }
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      if (element.value) {
+        PubSub.publish('enter pressed');
       }
+    }
   });
 };
 
@@ -142,5 +142,5 @@ export {
   updateMinMax,
   cleanForm,
   disableSubmit,
-  showModal
+  showModal,
 };

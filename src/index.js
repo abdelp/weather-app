@@ -11,11 +11,11 @@ window.searchForecast = async () => {
   const cityName = Display.getVal('city');
   const units = Display.getUnits();
 
-  let error, weatherData;
+  let error; let
+    weatherData;
 
   [error, weatherData] = await to(Weather.updateData(cityName, units));
-  if(weatherData) {
-
+  if (weatherData) {
     let imgUrl;
     [error, imgUrl] = await to(Img.getImgUrl(weatherData.main));
 
@@ -28,8 +28,9 @@ window.searchForecast = async () => {
 
 const searchByCoordinates = async (event, position) => {
   const units = Display.getUnits();
-  let error, weatherData;
-  [error, weatherData] = await to(Weather.updateDataByCoordinates({lon: position.coords.longitude, lat: position.coords.latitude}, 'metric'));
+  let error; let
+    weatherData;
+  [error, weatherData] = await to(Weather.updateDataByCoordinates({ lon: position.coords.longitude, lat: position.coords.latitude }, 'metric'));
 
   // if(weatherData)
   let imgUrl;
@@ -41,10 +42,10 @@ const searchByCoordinates = async (event, position) => {
 const updateView = async (event, unit) => {
   Weather.updateUnit(unit);
 
-  const {temp, temp_min, temp_max} = Weather.getData();
+  const { temp, temp_min, temp_max } = Weather.getData();
 
   Display.updateTemp(temp);
-  Display.updateMinMax({temp_min, temp_max});
+  Display.updateMinMax({ temp_min, temp_max });
 };
 
 PubSub.subscribe('location retrieved', searchByCoordinates);
@@ -56,4 +57,4 @@ Location.getLocation();
 window.onload = () => {
   Display.setUnitChangeHandler();
   Display.disableSubmit('search-form');
-}
+};
