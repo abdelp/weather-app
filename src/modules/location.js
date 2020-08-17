@@ -1,5 +1,9 @@
 import PubSub from 'pubsub-js';
 
+const notifyLocation = (position) => {
+  PubSub.publish('location retrieved', position);
+};
+
 const getLocation = () => {
   let result;
 
@@ -12,8 +16,4 @@ const getLocation = () => {
   return result;
 };
 
-const notifyLocation = (position) => {
-  PubSub.publish('location retrieved', position);
-};
-
-export { getLocation };
+export default getLocation;

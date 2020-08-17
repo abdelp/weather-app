@@ -1,5 +1,5 @@
 import to from 'await-to-js';
-import fetchUrl from './fetcher.js';
+import fetchUrl from './fetcher';
 import { weatherConf } from './params-provider';
 import getCurrentDateTime from './datetime';
 
@@ -26,9 +26,9 @@ const formatWeatherData = (data) => {
     cityName: data.name,
     main: `landscape ${data.weather[0].description}`,
     description: data.weather[0].description,
-    temp: parseInt(data.main.temp),
-    temp_min: parseInt(data.main.temp_min),
-    temp_max: parseInt(data.main.temp_max),
+    temp: parseInt(data.main.temp, 10),
+    tempMin: parseInt(data.main.tempMin, 10),
+    tempMax: parseInt(data.main.tempMax, 10),
     pressure: data.main.pressure,
     humidity: data.main.humidity,
     wind: data.wind.speed,
@@ -42,10 +42,8 @@ const formatWeatherData = (data) => {
 const updateData = async (cityName, units) => {
   const { api, url } = weatherConf();
   const parametrizedUrl = `${url}?q=${cityName}&appid=${api}&units=${units}`;
-  let error; let
-    result;
 
-  [error, result] = await to(fetchUrl(parametrizedUrl));
+  const [error, result] = await to(fetchUrl(parametrizedUrl));
   if (error) return error;
 
   result.units = units;
@@ -59,10 +57,8 @@ const updateData = async (cityName, units) => {
 const updateDataByCoordinates = async (position, units) => {
   const { api, url } = weatherConf();
   const parametrizedUrl = `${url}?lat=${position.lat}&lon=${position.lon}&appid=${api}&units=${units}`;
-  let error; let
-    result;
 
-  [error, result] = await to(fetchUrl(parametrizedUrl));
+  const [error, result] = await to(fetchUrl(parametrizedUrl));
   if (error) return error;
 
   result.units = units;
@@ -77,17 +73,17 @@ const getData = () => data;
 
 const updateUnit = (newUnit) => {
   const {
-    units, temp, temp_min, temp_max,
+    units, temp, tempMin, tempMax,
   } = getData();
 
-  if (newUnit === 'metric' && units != 'metric') {
+  if (newUnit === 'metric' && units !== 'metric') {
     data.temp = (temp - 32) / 1.8;
-    data.temp_min = (temp_min - 32) / 1.8;
-    data.temp_max = (temp_max - 32) / 1.8;
-  } else if (newUnit === 'imperial' && units != 'imperial') {
+    data.tempMin = (tempMin - 32) / 1.8;
+    data.tempMax = (tempMax - 32) / 1.8;
+  } else if (newUnit === 'imperial' && units !== 'imperial') {
     data.temp = temp * 1.8 + 32;
-    data.temp_min = temp_min * 1.8 + 32;
-    data.temp_max = temp_max * 1.8 + 32;
+    data.tempMin = tempMin * 1.8 + 32;
+    data.tempMax = tempMax * 1.8 + 32;
   }
   data.units = newUnit;
 };

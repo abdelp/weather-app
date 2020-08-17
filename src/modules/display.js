@@ -13,13 +13,13 @@ const getUnits = () => {
 
 const updateTemp = (temp) => {
   const tempEl = document.getElementById('main-temp');
-  temp = parseInt(temp);
+  temp = parseInt(temp, 10);
   tempEl.innerText = `${temp}°`;
 };
 
 const updateMinMax = (temp) => {
   const minMax = document.getElementById('min-max');
-  minMax.innerText = `${parseInt(temp.temp_min)}°/${parseInt(temp.temp_max)}°`;
+  minMax.innerText = `${parseInt(temp.tempMin, 10)}°/${parseInt(temp.tempMax, 10)}°`;
 };
 
 const updateDesc = (desc) => {
@@ -53,7 +53,7 @@ const updateLastUpdate = (date) => {
 };
 
 const updateRadialProgressBar = (percentage) => {
-  const value = percentage * 250 / 100;
+  const value = (percentage * 250) / 100;
   const progressBar = document.querySelector('#progress-bar path');
   progressBar.setAttribute('stroke-dasharray', `${value},250.2`);
   const percentageText = document.querySelector('#progress-bar text');
@@ -91,8 +91,8 @@ const setUnitChangeHandler = () => {
 const updateView = (data, backgroundImg) => {
   const {
     temp,
-    temp_min,
-    temp_max,
+    tempMin,
+    tempMax,
     icon,
     description,
     cityName,
@@ -104,8 +104,8 @@ const updateView = (data, backgroundImg) => {
   } = data;
   updateTemp(temp);
   updateMinMax({
-    temp_min,
-    temp_max,
+    tempMin,
+    tempMax,
   });
   updateIcon(icon);
   updateDesc(description);
@@ -120,7 +120,7 @@ const updateView = (data, backgroundImg) => {
 const disableSubmit = () => {
   const element = document.getElementById('city');
   element.addEventListener('keypress', event => {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       event.preventDefault();
       if (element.value) {
         PubSub.publish('enter pressed');
@@ -130,7 +130,7 @@ const disableSubmit = () => {
 };
 
 const showModal = (modalId) => {
-  $(`#${modalId}`).modal('show');
+  $(`#${modalId}`).modal('show'); // eslint-disable-line no-undef
 };
 
 export {
