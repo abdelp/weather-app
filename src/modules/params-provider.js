@@ -2,4 +2,4 @@ const weatherConf = () => ({ api: 'YOUR OPEN WEAHTER MAP API HERE', url: 'https:
 
 const imgConf = () => ({ api: 'YOUR GIPHY API HERE', url: 'https://api.giphy.com/v1/gifs/translate' });
 
-export {weatherConf, imgConf};
+export { weatherConf, imgConf };
