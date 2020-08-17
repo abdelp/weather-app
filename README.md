@@ -45,17 +45,17 @@ $ firebase init
 
 Select firestore and hosting features:
 
-![features](./assets/firebase_init_step_1.png)
+![features](./src/assets/firebase_init_step_1.png)
 
 Select /dist as the public directory:
 
-![public](./assets/firebase_init_step_2.png)
+![public](./src/assets/firebase_init_step_2.png)
 
 ### Usage
 
 To get the forecast of a city, you only need to put the name of the city in the search bar and press enter or click the search button on the right.
 
-![search](./assets/search-bar.png)
+![search](./src/assets/search-bar.png)
 
 ### Deployment
 
