@@ -49,7 +49,6 @@ const updateData = async (cityName, units) => {
   result.units = units;
   result.lastUpdate = getCurrentDateTime();
 
-  console.log(result);
   data = formatWeatherData(result);
 
   return data;
