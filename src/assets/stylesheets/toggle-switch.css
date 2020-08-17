@@ -65,15 +65,6 @@ input:checked + .slider::before {
   color: black;
 }
 
-/* input:checked + .slider:before + .on-label {
-  width: 10px;
-}
-
-input + .slider:before + .on-label {
-  width: 0;
-} */
-
-/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }

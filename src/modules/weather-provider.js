@@ -27,8 +27,8 @@ const formatWeatherData = (data) => {
     main: `landscape ${data.weather[0].description}`,
     description: data.weather[0].description,
     temp: parseInt(data.main.temp, 10),
-    tempMin: parseInt(data.main.tempMin, 10),
-    tempMax: parseInt(data.main.tempMax, 10),
+    tempMin: parseInt(data.main.temp_min, 10),
+    tempMax: parseInt(data.main.temp_max, 10),
     pressure: data.main.pressure,
     humidity: data.main.humidity,
     wind: data.wind.speed,
@@ -49,6 +49,7 @@ const updateData = async (cityName, units) => {
   result.units = units;
   result.lastUpdate = getCurrentDateTime();
 
+  console.log(result);
   data = formatWeatherData(result);
 
   return data;

@@ -35,8 +35,7 @@
       <section>
         <form id="search-form">
           <div class="input-group mb-3">
-            <input id="city" type="text" class="form-control" placeholder="E.g. New York" aria-label="city"
-              aria-describedby="basic-addon2">
+            <input id="city" type="text" class="form-control" placeholder="E.g. New York" aria-label="city">
             <div class="input-group-append">
               <button class="btn btn-secondary" type="button" onclick="searchForecast()">
                 <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px">
@@ -48,8 +47,8 @@
             <label class="switch">
               <input id="units" type="checkbox" checked>
               <span class="slider round"></span>
-              <div class="on-label label">°C</div>
-              <div class="off-label label">°F</div>
+              <span class="on-label label">°C</span>
+              <span class="off-label label">°F</span>
             </label>
           </div>
 
@@ -62,7 +61,7 @@
             <p id="min-max">16°/11°</p>
 
             <div>
-              <img id="weather-icon" src="" alt="">
+              <img id="weather-icon" alt="weather-icon" src="https://openweathermap.org/img/wn/01d@2x.png">
             </div>
 
             <p id="desc">Cloudy</p>

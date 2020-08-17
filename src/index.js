@@ -3,8 +3,8 @@ import PubSub from 'pubsub-js';
 import * as Display from './modules/display';
 import './assets/stylesheets/style.css';
 import * as Weather from './modules/weather-provider';
-import * as Img from './modules/img-provider';
-import * as Location from './modules/location';
+import getImgUrl from './modules/img-provider';
+import getLocation from './modules/location';
 import './assets/stylesheets/toggle-switch.css';
 
 window.searchForecast = async () => {
@@ -19,7 +19,7 @@ window.searchForecast = async () => {
     Display.showModal('not-found-modal');
   } else {
     let imgUrl;
-    [error, imgUrl] = await to(Img.getImgUrl(weatherData.main));
+    [error, imgUrl] = await to(getImgUrl(weatherData.main));
 
     Display.updateView(weatherData, imgUrl);
     Display.cleanForm('search-form');
@@ -41,7 +41,7 @@ const searchByCoordinates = async (event, position) => {
     }, units));
 
     let imgUrl;
-    [error, imgUrl] = await to(Img.getImgUrl(weatherData.main));
+    [error, imgUrl] = await to(getImgUrl(weatherData.main));
 
     Display.updateView(weatherData, imgUrl);
   }
@@ -67,7 +67,7 @@ PubSub.subscribe('location retrieved', searchByCoordinates);
 PubSub.subscribe('unit changed', updateView);
 PubSub.subscribe('enter pressed', window.searchForecast);
 
-Location.getLocation();
+getLocation();
 
 window.onload = () => {
   Display.setUnitChangeHandler();
