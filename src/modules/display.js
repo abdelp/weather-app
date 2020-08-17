@@ -127,7 +127,11 @@ const disableSubmit = () => {
           }
       }
   });
-}
+};
+
+const showModal = (modalId) => {
+  $(`#${modalId}`).modal('show');
+};
 
 export {
   getVal,
@@ -137,5 +141,6 @@ export {
   updateTemp,
   updateMinMax,
   cleanForm,
-  disableSubmit
+  disableSubmit,
+  showModal
 };
