@@ -28,13 +28,15 @@ To get a local copy up and running follow these simple example steps.
 - Create a firebase [account](https://console.firebase.google.com/)
 - Install [firebase CLI](https://firebase.google.com/docs/cli)
 - Install [Node](https://nodejs.org/en/)
+- Sign up to [Open Weather Map](https://openweathermap.org/) and validate your account to get and API key.
+- Sign up to [Gifphy](https://giphy.com/) and validate your account to get and API key.
 
 ### Setup
 
 From the command line/terminal clone the repository:
 
 ```
-$ git clone https://github.com/abdelp/todo-list-js.git
+$ git clone https://github.com/abdelp/weather-app.git
 ```
 
 Initialize the firebase hosting service
@@ -50,6 +52,8 @@ Select firestore and hosting features:
 Select /dist as the public directory:
 
 ![public](./src/assets/images/firebase_init_step_2.png)
+
+Put your Open Weather Map and Gifphy API keys in ./src/modules/params-provider.js
 
 ### Usage
 
